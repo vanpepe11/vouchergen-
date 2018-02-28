@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="C:\Users\Bimbola\Documents\web_class\font awesome\css\font-awesome.min.css">
+	<title></title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="angular.js"></script>
+  <script src="controller.js"></script>
+  <style>
+  	body{
+  		background-image: url("leather.jpg");
+  		background-repeat: repeat-y;
+    	/*background-position: right top;*/
+  	}
+  </style>
+</head>
+<body >
+<div class="container-fluid" id="p">
+	<div class="row" style="color:">
+		<div class="col-md-12">
+			<h1 style="text-align: center; font-size: 50px; font-family: impact; color: #DC1E45">VOUCHER WIZARD</h1>
+		</div>		
+	</div><br><br>
+	<div class="row">
+		<div class="col-md-6" style="text-align: center">
+			<h2 style="color:#FF0000">RECHARGE VOUCHER</h2><br><br>
+			<input type="text" name="" id="box">
+			<input type="submit" name="" value="generate" id="submit">
+		</div>
+		<div class="col-md-6" style="text-align: center;" ng-app="voucher"  ng-controller="tableController">
+			<br><br><br>
+			<p id="display" style="font-size: 25px; color: black; border:1px solid black; border-radius: 10px; font-weight: bold" hidden=""></p>
+		</div>		
+	</div>
+</div>
+</body>
+</html>
