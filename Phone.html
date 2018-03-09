@@ -2,23 +2,35 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="font-awesome.min.css">
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="phone.css">
   <script src="jquery.js"></script>
   <script src="bootstrap.min.js"></script>
-  <script src="angular.js"></script>
-  <script src="controller.js"></script>
+  <script src="fontawesome-all.js"></script>
+  <style>
+  	body{
+  		background-image: url("ice.jpg");
+  		background-repeat: repeat-y;
+    	/*background-position: right top;*/
+  	}
+  </style>
 </head>
 <body>
+<br><br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2">
 			
 		</div>
-		<div class="col-md-8">
-			<p></p>
+		<div class="col-md-8" id="pack">
+		<br><br>
+			<div id="not1"></div>
+			<div id="not2"></div>
+			<div id="not3"></div>
+			<div id="text"></div>
+			<p id="logo"><b>NOKIA</b></p>
 			<table>
 				<tr>
 					<td><input type="button" value="-" name="" id="yes" onclick="yes()"></td>
@@ -26,8 +38,8 @@
 					<td><input type="button" value="-" id="no" onclick="clear1()"></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="^" name="" id="call1" onclick="call1()"></td>
-					<td><input type="button" value="^" name="" id="call2" onclick="end()"></td>
+					<td><input type="button" value="" name="" id="call1" onclick="call1()" class="fas fa-phone"></td>
+					<td><input type="button" value="^" name="" id="call2" onclick="end()" class="fas fa-phone"></td>
 				</tr>
 				<tr>
 					<td><input type="button" value="1" name="" id="nbutton" onclick="button('1')"></td>
@@ -56,5 +68,121 @@
 		</div>
 	</div>
 </div>
+<input id="slot1" type="text" name=""><span><b>:</b></span><input id="slot2" type="text" name=""><span><b>:</b></span><input id="slot3" type="text" name="">
 </body>
+<script>
+var count=0;
+var bal= (localStorage.getItem("balance") > 0)? localStorage.getItem("balance"):0;
+	localStorage.setItem("balance", bal);
+	function button(z){
+		document.getElementById('text').innerHTML+=z;
+	}
+	function clear1(){
+		var v=document.getElementById('text').innerHTML;
+		document.getElementById('text').innerHTML=v.substring(0,v.length-1);
+	}
+	function end(){
+		document.getElementById('text').innerHTML="";
+		window.clearInterval(stop);
+	}
+	function call1(){
+		var v=document.getElementById('text').innerHTML;
+		var e=v.substring(5,21);
+		var cd=v.substring(0,1)
+		var f=v.substring(0,5),g=v.substring(21,22);
+		var get=localStorage.getItem("cardlist");
+		var j=JSON.parse(get);
+		var found;
+		if(v.length==22 && f=="*555*" && g=="#"){
+			for(i=0; i<j.length; i++){
+				var h=new RegExp(j[i][0]);
+				// var l=j[i][1]
+				var k=h.test(e);
+				if(k==true&& j[i][1]=="new"){
+					found="1";
+					j[i][1]="used";
+					var cardval=j[i][2]
+					var labcards=JSON.stringify(j);
+					localStorage.setItem("cardlist",labcards);
+					break;
+				}
+				else if(k==true&& j[i][1]=="used"){
+					found="2";
+					count++;
+					break;
+				}
+				else if(k==false){
+					found="0";
+					count++;
+				}
+			}
+			if(found=="1"){
+				document.getElementById('text').innerHTML="Your "+"N"+cardval+" recharge was sucessful";
+				p=localStorage.getItem("balance");
+				bal=parseInt(p)+parseInt(cardval);
+				localStorage.setItem("balance",bal);
+			}
+			else if(found=="0"){
+				document.getElementById('text').innerHTML="not found";
+			}
+			else if(found=="2"){
+				document.getElementById('text').innerHTML="Voucher has been used";
+			}
+				if(count>4){
+					document.getElementById('text').innerHTML="Your line has been barred";
+				}
+		}
+		else if(v=="*556#"){
+			p=localStorage.getItem("balance");
+			document.getElementById('text').innerHTML="Your account balance is N"+p;
+		}
+		else if(v.length==11 && cd=="0" ){
+			document.getElementById('text').innerHTML="Calling...";
+			stopwatch();
+		}
+		else{
+			document.getElementById('text').innerHTML="incorrect input";
+		}
+
+	}
+	var k= new Date();
+	var sec= k.getSeconds();
+	var p= sec % 2;
+	var seconds=0
+	var minutes=0
+	var hours=0
+	function notif(){
+		k= new Date();
+		min= k.getSeconds();
+		p= min % 2;
+		if(p==0){
+			document.getElementById("not3").style.backgroundColor = "red";
+		}
+		else if(p==1){
+			document.getElementById("not3").style.backgroundColor ="#3C3C3C";
+		}
+	}
+	function add(){
+		seconds++;
+		
+		document.getElementById("slot3").value=seconds;
+		if(seconds>=60){
+			seconds=0;
+			minutes++;
+			document.getElementById("slot2").value=minutes;
+			if(minutes>=60){
+				minutes=0;
+				hours++;
+				document.getElementById("slot1").value=hours;
+			}
+		}
+		document.getElementById('text').textContent=(hours ? (hours>9?hours : "0" +hours):"00")+":"+ (minutes ? (minutes>9?minutes : "0" +minutes):"00")+":"+ (seconds ? (seconds>9?seconds : "0" +seconds):"00");
+	}
+	function stopwatch(){
+		stop= setInterval(timer,1000);}
+	function timer(){
+		trigger= setTimeout(add,1000)
+	}
+	setInterval(notif,1000);
+</script>
 </html>

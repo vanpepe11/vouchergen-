@@ -1,0 +1,110 @@
+#text{
+    width: 220px;
+    height: 240px;
+    border: 1px solid black;
+    border-radius: 0px 0px 8px 8px;
+    background-color: #55D4FF;
+    font-size:20px;
+    word-wrap: break-word;
+
+}
+#pack{
+    height:500px;
+    width: 250px;
+    border:1px solid green;
+    border-radius: 20px;
+    background-color: black;
+}
+#not1{
+    height: 10px;
+    width: 10px;
+    background-color: #005F7E;
+    position: relative;
+    left:4px;
+    top: -20px;
+    border:1px solid;
+    border-radius: 100%;
+}
+#not2{
+    height: 13px;
+    width: 60px;
+    background-color: white;
+    position: relative;
+    left:74px;
+    top: -30px;
+    border:1px solid;
+    border-radius: 60px;
+}
+#not3{
+    height: 10px;
+    width: 10px;
+    background-color: #3C3C3C;
+    position: relative;
+    left:204px;
+    top: -42px;
+    border:1px solid;
+    border-radius: 100%;
+}
+#logo{
+    color: #B4B4B4;
+    font-size: 23px;
+    font-family: courier;
+    position: relative;
+    left:69px;
+    top: -280px;
+}
+#nbutton{
+    width: 60px;
+    height:26px;
+    background-color: #FEF5AE;
+    color: black;
+    border:1px solid black;
+    border-radius: 4px
+}
+#ok{
+    width:60px;
+    height:55px;
+    background-color: white;
+    color: white;
+    border:1px solid white;
+    border-radius: 4px
+}
+#call2{
+    width: 60px;
+    height:26px;
+    background-color: white;
+    color: red;
+    border:1px solid;
+    border-radius: 4px
+}
+#call1{
+    width: 60px;
+    height:26px;
+    background-color: white;
+    color: green;
+    border:1px solid;
+    border-radius: 4px
+}
+#yes{
+    width: 60px;
+    height:26px;
+    background-color: white;
+    color: green;
+    border:1px solid;
+    border-radius: 4px
+}
+#no{
+    width: 60px;
+    height:26px;
+    background-color: white;
+    color: red;
+    border:1px solid;
+    border-radius: 4px
+}
+table{
+    width: 200px;
+    height:150px;
+    position: relative;
+    top:-35px;
+    right:-10px;
+}
